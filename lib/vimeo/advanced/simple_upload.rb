@@ -22,9 +22,9 @@ module Vimeo
 
       # Uploads an IO to Vimeo.
       def upload_io(io, size = 0, filename = 'io.data')
-        puts "************"
-        puts io.class
-        puts io.methods
+        logger.info "************"
+        logger io.class
+        logger io.methods
         raise "#{io.inspect} must respond to #read" unless io.respond_to?(:read)
         task = Task.new(self, @oauth_consumer, io, size, filename)
         task.execute
